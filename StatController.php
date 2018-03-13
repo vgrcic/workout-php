@@ -12,6 +12,7 @@
 
 		public function getStats($user) {
 			$stats = $this -> statRep -> getStats($user);
+			header('Content-Type: application/json');
 			print json_encode($stats);
 		}
 
@@ -19,12 +20,14 @@
 			$this -> validateRequest($id, $user);
 			$this -> statRep -> updateStat($id, $increment);
 			$stat = $this -> statRep -> getStat($id);
+			header('Content-Type: application/json');
 			print json_encode($stat);
 		}
 
 		public function createStat($name, $user) {
 			$id = $this -> statRep -> createStat($name, $user);
 			$stat = $this -> statRep -> getStat($id);
+			header('Content-Type: application/json');
 			print json_encode($stat);
 		}
 
