@@ -21,31 +21,38 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<title>Log in</title>
 </head>
 <body>
 
-	<form method="POST", action="login.php">
+	<div class="main">
 
-		<table>
+		<h1>Workout</h1>
 
-			<tr>
-				<th>Username: </th>
-				<td><input type="text" name="username"></td>
-			</tr>
+		<form method="POST", action="login.php">
 
-			<tr>
-				<th>Password: </th>
-				<td><input type="password" name="password"></td>
-			</tr>
+			<table class="login-table">
 
-			<tr>
-				<td colspan="2"><input type="submit" value="Log in"></td>
-			</tr>
+				<tr>
+					<th>Username: </th>
+					<td><input type="text" name="username"></td>
+				</tr>
 
-		</table>
+				<tr>
+					<th>Password: </th>
+					<td><input type="password" name="password"></td>
+				</tr>
 
-	</form>
+				<tr>
+					<td colspan="2" align="center"><input type="submit" value="Log in" class="login-btn"></td>
+				</tr>
+
+			</table>
+
+		</form>
+
+	</div>
 
 </body>
 </html>

@@ -34,6 +34,7 @@
 		public function deleteStat($stat, $user) {
 			$this -> validateRequest($stat, $user);
 			$this -> statRep -> deleteStat($stat);
+			print $stat;
 		}
 
 		public function validateRequest($id, $user) {
