@@ -3,29 +3,37 @@
 	session_start();
 
 	require_once 'StatController.php';
+	require_once 'UserController.php';
 
-	$controller = new StatController;
+	$statcontroller = new StatController;
+	$userController = new UserController;
 	$user = null;
+
+	if (isset($_SERVER['PATH_INFO']) && preg_match('#/users/username=([^/]*)/exists#', $_SERVER['PATH_INFO'], $matches)) {
+		$userController -> exists($matches[1]); exit;
+	}
+
+
 
 	if (!isset($_SESSION['user'])) {
 		http_response_code(401); exit;
-	} $user = $_SESSION['user'];
+	}
 
 
 
 	if (isset($_GET['stat'], $_GET['increment'])) {
-		$controller -> updateStat($_GET['stat'], $_GET['increment'], $user);
+		$statcontroller -> updateStat($_GET['stat'], $_GET['increment']);
 
 	} else if (isset($_POST['name'])) {
-		$controller -> createStat($_POST['name'], $user);
+		$statcontroller -> createStat($_POST['name']);
 
 	} else if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 		$stat = trim($_SERVER['PATH_INFO'], '/stats/');
-		$controller -> deleteStat($stat, $user);
+		$statcontroller -> deleteStat($stat);
 
 	} else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		if ($_SERVER['PATH_INFO'] == '/stats')
-			$controller -> getStats($user);
+			$statcontroller -> getStats();
 
 	} else {
 		http_response_code(400); exit;
